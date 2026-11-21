@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>TopKnotch Trade Services - Quotation Generator</title>
 
     <!-- Inlined jsPDF (100% Offline, GitHub Pages Ready, Zero Server Required) -->
@@ -437,6 +437,13 @@
             --tkgray: #BFC2C8;
             --tktext: #444444;
             --tklight: #F3F5F8;
+            --target-size: 38px;
+        }
+
+        @media (pointer: coarse) {
+            :root {
+                --target-size: 44px;
+            }
         }
 
         * {
@@ -449,10 +456,11 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #0F172A;
             color: #334155;
-            height: 100vh;
+            min-height: 100dvh;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: hidden;
         }
 
         /* Top Navigation Header */
@@ -460,19 +468,21 @@
             background: linear-gradient(135deg, #0D1F30 0%, #1A3651 100%);
             border-bottom: 2.5px solid var(--tkamber);
             color: #FFFFFF;
-            padding: 0.65rem 1.5rem;
+            padding: 0.65rem 1.25rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-shrink: 0;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
             z-index: 50;
+            gap: 0.75rem;
+            flex-wrap: wrap;
         }
 
         .nav-brand {
             display: flex;
             align-items: center;
-            gap: 0.9rem;
+            gap: 0.85rem;
         }
 
         .nav-brand img {
@@ -484,7 +494,7 @@
         }
 
         .brand-title {
-            font-size: 1.15rem;
+            font-size: clamp(0.98rem, 2.5vw, 1.15rem);
             font-weight: 700;
             letter-spacing: 0.5px;
             color: #FFFFFF;
@@ -503,31 +513,36 @@
 
         .nav-actions {
             display: flex;
-            gap: 0.75rem;
+            gap: 0.6rem;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 0.45rem;
-            padding: 0.48rem 0.95rem;
-            font-size: 0.84rem;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.48rem 0.85rem;
+            font-size: 0.82rem;
             font-weight: 600;
             border-radius: 6px;
             border: 1px solid transparent;
             cursor: pointer;
+            min-height: var(--target-size);
             transition: all 0.15s ease-in-out;
+            text-decoration: none;
+            white-space: nowrap;
         }
 
         .btn-secondary {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.12);
             color: #F1F5F9;
-            border-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.25);
         }
 
         .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.22);
             color: #FFFFFF;
         }
 
@@ -542,12 +557,34 @@
             transform: translateY(-1px);
         }
 
+        /* Dedicated Bold Navy Add-Line-Item Button */
+        .btn-add-item {
+            background-color: var(--tknavy);
+            color: #FFFFFF !important;
+            border: 1.5px solid var(--tknavy);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.38rem 0.8rem;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(26, 54, 81, 0.25);
+        }
+
+        .btn-add-item:hover {
+            background-color: var(--tkamber);
+            border-color: var(--tkamber);
+            color: #FFFFFF !important;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(240, 154, 54, 0.35);
+        }
+
         .btn-danger {
             background-color: #EF4444;
             color: #FFFFFF;
             padding: 0.25rem 0.5rem;
             font-size: 0.75rem;
             border-radius: 4px;
+            min-height: 32px;
+            min-width: 32px;
         }
 
         .btn-danger:hover {
@@ -558,7 +595,7 @@
         .app-workspace {
             display: flex;
             flex: 1;
-            height: calc(100vh - 60px);
+            height: calc(100dvh - 60px);
             overflow: hidden;
         }
 
@@ -591,6 +628,7 @@
             margin-bottom: 0.85rem;
             padding-bottom: 0.5rem;
             border-bottom: 1px solid #F1F5F9;
+            gap: 0.5rem;
         }
 
         .card-title {
@@ -643,6 +681,7 @@
             border-radius: 5px;
             color: #1E293B;
             background-color: #FFFFFF;
+            min-height: var(--target-size);
             transition: border-color 0.15s, box-shadow 0.15s;
         }
 
@@ -658,11 +697,18 @@
             cursor: not-allowed;
         }
 
-        /* Table in Form */
+        /* Table in Form with Horizontal Scroll for Mobile */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-top: 0.5rem;
+        }
+
         .items-table {
             width: 100%;
+            min-width: 460px;
             border-collapse: collapse;
-            margin-top: 0.5rem;
             font-size: 0.8rem;
         }
 
@@ -717,6 +763,8 @@
             flex: 1;
             background-color: #334155;
             overflow-y: auto;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
             padding: 1.5rem;
             display: flex;
             flex-direction: column;
@@ -736,6 +784,7 @@
             align-items: center;
             font-size: 0.78rem;
             margin-bottom: 1rem;
+            flex-shrink: 0;
         }
 
         .preview-badge {
@@ -1032,6 +1081,8 @@
             font-size: 8.4pt;
             line-height: 1.45;
             color: var(--tktext);
+            overflow-wrap: break-word;
+            word-break: break-word;
         }
 
         .sheet-notes-rule {
@@ -1123,6 +1174,70 @@
             opacity: 1;
             transform: translateY(0);
             pointer-events: auto;
+        }
+
+        /* Responsive Mobile Media Queries */
+        @media (max-width: 960px) {
+            body {
+                height: auto;
+                min-height: 100dvh;
+                overflow-y: auto;
+            }
+
+            .app-workspace {
+                flex-direction: column;
+                height: auto;
+                overflow: visible;
+            }
+
+            .form-panel {
+                width: 100%;
+                max-width: 100%;
+                min-width: 0;
+                border-right: none;
+                border-bottom: 2px solid #CBD5E1;
+                padding: 1rem 0.75rem;
+            }
+
+            .preview-panel {
+                width: 100%;
+                padding: 1.25rem 0.5rem;
+            }
+
+            .top-nav {
+                padding: 0.75rem 1rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 0.6rem;
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr;
+                gap: 0.6rem;
+            }
+
+            .nav-brand {
+                width: 100%;
+            }
+
+            .nav-actions {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.45rem;
+            }
+
+            .nav-actions .btn-primary {
+                grid-column: span 2;
+            }
+
+            .card-header {
+                flex-wrap: wrap;
+            }
         }
 
         /* Print Styles: Save as PDF directly in browser */
@@ -1313,9 +1428,9 @@
             <div class="form-card">
                 <div class="card-header">
                     <div class="card-title">Quotation Line Items</div>
-                    <button type="button" class="btn btn-secondary" onclick="addItemRow()"
-                        style="font-size: 0.76rem; padding: 0.3rem 0.65rem;">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    <!-- Clear, High-Contrast Navy Button -->
+                    <button type="button" class="btn btn-add-item" onclick="addItemRow()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2.5">
                             <line x1="12" y1="5" x2="12" y2="19" />
                             <line x1="5" y1="12" x2="19" y2="12" />
@@ -1324,21 +1439,23 @@
                     </button>
                 </div>
 
-                <table class="items-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 14%;">QTY</th>
-                            <th style="width: 16%;">UNIT</th>
-                            <th style="width: 40%;">DESCRIPTION</th>
-                            <th style="width: 15%; text-align: right;">PRICE</th>
-                            <th style="width: 15%; text-align: right;">AMOUNT</th>
-                            <th style="width: 25px;"></th>
-                        </tr>
-                    </thead>
-                    <tbody id="itemsTableBody">
-                        <!-- Dynamic Form Rows Injected Here -->
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="items-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 14%;">QTY</th>
+                                <th style="width: 16%;">UNIT</th>
+                                <th style="width: 40%;">DESCRIPTION</th>
+                                <th style="width: 15%; text-align: right;">PRICE</th>
+                                <th style="width: 15%; text-align: right;">AMOUNT</th>
+                                <th style="width: 32px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="itemsTableBody">
+                            <!-- Dynamic Form Rows Injected Here -->
+                        </tbody>
+                    </table>
+                </div>
 
                 <div class="totals-box">
                     <div class="total-row">
@@ -1366,17 +1483,17 @@
                     <div class="form-group">
                         <label class="form-label" for="shiftStart">Start Time</label>
                         <input type="text" id="shiftStart" class="form-control" value="4:30 AM"
-                            oninput="updateServiceNote()">
+                            placeholder="e.g. 4:30 AM" oninput="onShiftInputChange()">
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="shiftDuration">Shift Duration</label>
                         <input type="text" id="shiftDuration" class="form-control" value="4-hour shift"
-                            oninput="updateServiceNote()">
+                            placeholder="e.g. 4-hour shift" oninput="onShiftInputChange()">
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="shiftHours">Shift Window</label>
+                        <label class="form-label" for="shiftHours">Shift Window (Auto / Editable)</label>
                         <input type="text" id="shiftHours" class="form-control" value="4:30 AM -- 8:30 AM"
-                            oninput="updateServiceNote()">
+                            oninput="onManualShiftWindowChange()">
                     </div>
                 </div>
 
@@ -1387,7 +1504,7 @@
 
                 <div class="form-group" style="margin-top: 0.65rem;">
                     <label class="form-label" for="customNote">Additional Custom Notes (Optional)</label>
-                    <textarea id="customNote" class="form-control" rows="2"
+                    <textarea id="customNote" class="form-control" rows="3"
                         placeholder="Enter any extra terms, special requirements, or handover details..."
                         oninput="syncLivePreviewSheet()"></textarea>
                 </div>
@@ -1500,9 +1617,93 @@
             syncLivePreviewSheet();
         }
 
-        function onServiceDateChange() {
+        // Time & DST Computation Utilities
+        function parseTime(timeStr) {
+            if (!timeStr) return null;
+            const cleaned = timeStr.trim().toUpperCase();
+            const match = cleaned.match(/^(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?$/);
+            if (!match) return null;
+            let hours = parseInt(match[1], 10);
+            const minutes = match[2] ? parseInt(match[2], 10) : 0;
+            const meridian = match[3];
+
+            if (meridian === "PM" && hours < 12) hours += 12;
+            if (meridian === "AM" && hours === 12) hours = 0;
+            return { hours, minutes };
+        }
+
+        function parseDurationHours(durationStr) {
+            if (!durationStr) return 0;
+            const match = durationStr.match(/(\d+(?:\.\d+)?)/);
+            return match ? parseFloat(match[1]) : 0;
+        }
+
+        function formatTime12h(date) {
+            let h = date.getHours();
+            const m = date.getMinutes();
+            const meridian = h >= 12 ? "PM" : "AM";
+            h = h % 12;
+            if (h === 0) h = 12;
+            const mStr = String(m).padStart(2, "0");
+            return `${h}:${mStr} ${meridian}`;
+        }
+
+        function calculateShiftWindow(serviceDateStr, startStr, durationStr) {
+            const startTime = parseTime(startStr);
+            const durationHours = parseDurationHours(durationStr);
+            if (!startTime || !durationHours) return startStr;
+
+            let d = new Date(serviceDateStr);
+            if (isNaN(d.getTime())) {
+                d = new Date();
+            }
+            d.setHours(startTime.hours, startTime.minutes, 0, 0);
+
+            const startMs = d.getTime();
+            const startOffset = d.getTimezoneOffset();
+
+            // Absolute elapsed time in milliseconds
+            const durationMs = Math.round(durationHours * 3600 * 1000);
+            const endD = new Date(startMs + durationMs);
+            const endOffset = endD.getTimezoneOffset();
+
+            const formattedStart = formatTime12h(d);
+            const formattedEnd = formatTime12h(endD);
+
+            let extraNote = "";
+            if (endD.getDate() !== d.getDate()) {
+                extraNote = " (+1 day)";
+            }
+
+            // DST Transition Detection (Spring-forward / Fall-back)
+            if (startOffset !== endOffset) {
+                if (startOffset > endOffset) {
+                    extraNote += " [DST +1h]";
+                } else {
+                    extraNote += " [DST -1h]";
+                }
+            }
+
+            return `${formattedStart} -- ${formattedEnd}${extraNote}`;
+        }
+
+        function onShiftInputChange() {
+            const serviceDate = document.getElementById("serviceDate").value;
+            const start = document.getElementById("shiftStart").value;
+            const duration = document.getElementById("shiftDuration").value;
+
+            const calculatedWindow = calculateShiftWindow(serviceDate, start, duration);
+            document.getElementById("shiftHours").value = calculatedWindow;
+
             updateServiceNote();
-            syncLivePreviewSheet();
+        }
+
+        function onManualShiftWindowChange() {
+            updateServiceNote();
+        }
+
+        function onServiceDateChange() {
+            onShiftInputChange();
         }
 
         function updateServiceNote() {
@@ -1527,6 +1728,10 @@
                 const subtotalCell = document.getElementById(`row-subtotal-${index}`);
                 if (subtotalCell) {
                     subtotalCell.textContent = formatMoney(rowSubtotal);
+                }
+                // Update first item rate in service note if index 0 rate changed
+                if (index === 0 && field === "unitPrice") {
+                    updateServiceNote();
                 }
             } else {
                 items[index][field] = value;
@@ -1615,8 +1820,11 @@
         }
 
         // Pagination helper for Live HTML Preview
-        function paginateItemsForPreview(itemList) {
-            if (itemList.length <= 13) {
+        function paginateItemsForPreview(itemList, customNoteText) {
+            const isLongNote = (customNoteText && customNoteText.length > 250);
+            const page1Capacity = isLongNote ? 8 : 13;
+
+            if (itemList.length <= page1Capacity) {
                 return [{
                     pageIndex: 1,
                     items: itemList,
@@ -1632,7 +1840,7 @@
 
             while (remaining.length > 0) {
                 if (p === 1) {
-                    if (remaining.length <= 13) {
+                    if (remaining.length <= page1Capacity) {
                         pages.push({
                             pageIndex: p,
                             items: remaining,
@@ -1652,7 +1860,8 @@
                         });
                     }
                 } else {
-                    if (remaining.length <= 18) {
+                    const pageCap = isLongNote ? 12 : 18;
+                    if (remaining.length <= pageCap) {
                         pages.push({
                             pageIndex: p,
                             items: remaining,
@@ -1696,9 +1905,12 @@
             const autoNote = document.getElementById("autoNote").value;
             const customNote = document.getElementById("customNote").value.trim();
 
-            const totals = calculateTotals(); const subtotal = totals.subtotal; const tax = totals.tax; const grandTotal = totals.grandTotal;
+            const totals = calculateTotals();
+            const subtotal = totals.subtotal;
+            const tax = totals.tax;
+            const grandTotal = totals.grandTotal;
 
-            const pages = paginateItemsForPreview(items);
+            const pages = paginateItemsForPreview(items, customNote);
             const totalPages = pages.length;
 
             const badge = document.getElementById("pageCountBadge");
@@ -1871,7 +2083,7 @@
             });
         }
 
-        // PDF Document Generation via jsPDF & AutoTable (Multi-Page Safe)
+        // PDF Document Generation via jsPDF & AutoTable (Safe Multi-Page & Long Notes)
         function createPDFDocument() {
             const jsPDFClass = (window.jspdf && window.jspdf.jsPDF) || window.jsPDF;
             if (!jsPDFClass) {
@@ -2013,12 +2225,12 @@
             });
 
             let curY = doc.lastAutoTable.finalY + 4;
+            const maxY = 255; // Stop well before footer at 270 and page number at 266.5
 
-            // Check remaining vertical room on last table page for Totals & Notes (~50mm needed)
-            // Maximum content Y is 297 - 38 = 259mm
-            if (curY + 50 > 259) {
+            // Check remaining vertical room on last table page for Totals (~25mm needed)
+            if (curY + 25 > maxY) {
                 doc.addPage();
-                curY = 38; // start below header on the new page
+                curY = 38;
             }
 
             // Totals Box (Right Aligned)
@@ -2049,7 +2261,12 @@
             doc.text(formatMoney(grandTotal), totalValX, curY + 0.5, { align: "right" });
             curY += 10;
 
-            // Notes Section
+            // Notes Section with Dynamic Multi-Page Line Splitting
+            if (curY + 15 > maxY) {
+                doc.addPage();
+                curY = 38;
+            }
+
             doc.setDrawColor(tkgray[0], tkgray[1], tkgray[2]);
             doc.setLineWidth(0.2);
             doc.line(18, curY, 192, curY);
@@ -2063,20 +2280,40 @@
 
             doc.setFont("helvetica", "normal");
             doc.setFontSize(8);
-            if (autoNote) {
-                doc.text(autoNote, 18, curY);
+
+            const printNoteLine = (txt) => {
+                if (curY > maxY) {
+                    doc.addPage();
+                    curY = 38;
+                }
+                doc.text(txt, 18, curY);
                 curY += 4;
+            };
+
+            if (autoNote) {
+                const autoLines = doc.splitTextToSize(autoNote, 174);
+                autoLines.forEach(l => printNoteLine(l));
             }
-            doc.text("All prices in Canadian dollars. HST (13%) is added as shown.", 18, curY);
-            curY += 4;
+
+            printNoteLine("All prices in Canadian dollars. HST (13%) is added as shown.");
 
             if (customNote) {
-                const splitNotes = doc.splitTextToSize(customNote, 174);
-                doc.text(splitNotes, 18, curY);
-                curY += (splitNotes.length * 3.8);
+                const paragraphs = customNote.split("\n");
+                paragraphs.forEach(para => {
+                    if (para.trim()) {
+                        const lines = doc.splitTextToSize(para, 174);
+                        lines.forEach(l => printNoteLine(l));
+                    } else {
+                        curY += 2;
+                    }
+                });
             }
 
-            curY += 3;
+            if (curY + 6 > maxY) {
+                doc.addPage();
+                curY = 38;
+            }
+            curY += 2;
             doc.setFont("helvetica", "italic");
             doc.setTextColor(100, 116, 139);
             doc.text("Thank you for your business!", 18, curY);
@@ -2227,7 +2464,7 @@
             renderItemsTable();
             calculateTotals();
             onDateOrSerialChange();
-            updateServiceNote();
+            onShiftInputChange();
             showToast("Defaults restored successfully");
         }
 
@@ -2248,6 +2485,8 @@
         window.calculateTotals = calculateTotals;
         window.onDateOrSerialChange = onDateOrSerialChange;
         window.onServiceDateChange = onServiceDateChange;
+        window.onShiftInputChange = onShiftInputChange;
+        window.onManualShiftWindowChange = onManualShiftWindowChange;
         window.updateServiceNote = updateServiceNote;
         window.syncLivePreviewSheet = syncLivePreviewSheet;
         window.downloadPDF = downloadPDF;
@@ -2259,7 +2498,7 @@
             renderItemsTable();
             calculateTotals();
             onDateOrSerialChange();
-            updateServiceNote();
+            onShiftInputChange();
         });
     </script>
 </body>
