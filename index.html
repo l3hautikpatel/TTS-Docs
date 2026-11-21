@@ -2588,8 +2588,8 @@
             const wmSin = Math.sin(wmAngle);
             const wmDx = (wmWidth / 2) * wmCos - (wmHeight / 2) * wmSin;
             const wmDy = (wmWidth / 2) * wmSin + (wmHeight / 2) * wmCos;
-            const targetWmX = 105 - wmDx + (wmHeight * wmSin);
-            const targetWmY = 148.5 - wmDy - (wmHeight * wmCos) + wmHeight;
+            const targetWmX = 105 - wmDx; // 56.03mm (Centered at 105mm)
+            const targetWmY = 148.5 - wmHeight + wmDy; // 179.45mm (Centered at 148.5mm)
 
             for (let p = 1; p <= pageCount; p++) {
                 doc.setPage(p);
