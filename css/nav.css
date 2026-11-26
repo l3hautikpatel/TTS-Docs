@@ -1,0 +1,133 @@
+/* Top Navigation Document Mode Switcher */
+.nav-doc-switcher {
+    display: flex;
+    align-items: center;
+    background: rgba(13, 31, 48, 0.7);
+    border: 1px solid rgba(240, 154, 54, 0.4);
+    border-radius: 8px;
+    padding: 3px;
+    gap: 3px;
+}
+
+.doc-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.42rem 0.85rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #CBD5E1;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+}
+
+.doc-tab-btn svg {
+    flex-shrink: 0;
+}
+
+.doc-tab-btn:hover {
+    color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.doc-tab-btn.active {
+    color: #FFFFFF;
+    background: var(--tknavy);
+    border-color: var(--tkamber);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.doc-tab-btn.active svg {
+    stroke: var(--tkamber);
+}
+
+/* Document Mode Workspace Switching */
+.doc-workspace {
+    display: none;
+}
+
+.doc-workspace.active {
+    display: flex;
+}
+
+/* Auth Lock Button in Nav */
+.btn-auth-lock {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.75rem;
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #FCA5A5;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-auth-lock:hover {
+    background: rgba(239, 68, 68, 0.3);
+    color: #FFFFFF;
+    border-color: #EF4444;
+}
+
+@media (max-width: 980px) {
+    .nav-doc-switcher {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.4rem;
+    }
+    .doc-tab-btn {
+        flex: 1;
+        justify-content: center;
+        padding: 0.45rem 0.5rem;
+        font-size: 0.78rem;
+    }
+}
+
+/* Clean Mobile Navigation Tabs & Responsive Enhancements */
+.mobile-nav-tabs {
+    display: none;
+    background-color: #1E293B;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #334155;
+    gap: 0.5rem;
+    position: sticky;
+    top: 56px;
+    z-index: 90;
+}
+
+.mobile-tab-btn {
+    flex: 1;
+    padding: 0.45rem 0.75rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    border-radius: 6px;
+    border: 1px solid #475569;
+    background-color: #0F172A;
+    color: #94A3B8;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    transition: all 0.15s;
+}
+
+.mobile-tab-btn.active {
+    background-color: var(--tkamber);
+    color: #FFFFFF;
+    border-color: var(--tkamber);
+}
+
+@media (max-width: 1199px) {
+    .mobile-nav-tabs {
+        display: flex;
+    }
+}

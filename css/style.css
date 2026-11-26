@@ -1,0 +1,1013 @@
+:root {
+            --tknavy: #1A3651;
+            --tknavydark: #0D1F30;
+            --tkamber: #F09A36;
+            --tkgray: #BFC2C8;
+            --tktext: #444444;
+            --tklight: #F3F5F8;
+            --target-size: 40px;
+        }
+
+        @media (pointer: coarse) {
+            :root {
+                --target-size: 44px;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+
+        /* Global page layout with NATURAL scrolling enabled */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #0F172A;
+            color: #334155;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            overflow-y: auto;
+            /* Natural scrolling of the whole page */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Top Navigation Header */
+        .top-nav {
+            background: linear-gradient(135deg, #0D1F30 0%, #1A3651 100%);
+            border-bottom: 2.5px solid var(--tkamber);
+            color: #FFFFFF;
+            padding: 0.65rem 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            z-index: 100;
+            gap: 0.75rem;
+            position: sticky;
+            top: 0;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .nav-brand img {
+            height: 38px;
+            width: auto;
+            background: white;
+            padding: 3px;
+            border-radius: 6px;
+        }
+
+        .brand-title {
+            font-size: clamp(0.98rem, 2.5vw, 1.15rem);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #FFFFFF;
+        }
+
+        .brand-title span {
+            color: var(--tkamber);
+        }
+
+        .brand-sub {
+            font-size: 0.72rem;
+            color: #94A3B8;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.48rem 0.85rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            min-height: var(--target-size);
+            transition: all 0.15s ease-in-out;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.12);
+            color: #F1F5F9;
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.22);
+            color: #FFFFFF;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #F09A36 0%, #D97706 100%);
+            color: #FFFFFF;
+            box-shadow: 0 2px 8px rgba(240, 154, 54, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #F59E0B 0%, #B45309 100%);
+            transform: translateY(-1px);
+        }
+
+        /* Dedicated Bold Navy Add-Line-Item Button */
+        .btn-add-item {
+            background-color: var(--tknavy) !important;
+            color: #FFFFFF !important;
+            border: 1.5px solid var(--tknavy) !important;
+            font-size: 0.82rem !important;
+            font-weight: 700 !important;
+            padding: 0.42rem 0.9rem !important;
+            border-radius: 6px !important;
+            box-shadow: 0 2px 6px rgba(26, 54, 81, 0.3) !important;
+            cursor: pointer !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 0.4rem !important;
+            transition: all 0.15s ease-in-out !important;
+        }
+
+        .btn-add-item:hover,
+        .btn-add-item:focus {
+            background-color: var(--tkamber) !important;
+            border-color: var(--tkamber) !important;
+            color: #FFFFFF !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 3px 8px rgba(240, 154, 54, 0.4) !important;
+        }
+
+        .btn-danger {
+            background-color: #EF4444;
+            color: #FFFFFF;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            min-height: 32px;
+            min-width: 32px;
+        }
+
+        .btn-danger:hover {
+            background-color: #DC2626;
+        }
+
+        /* Mobile Quick Navigation Tabs (Shown on screens < 1200px) */
+        .mobile-nav-tabs {
+            display: none;
+            background-color: #1E293B;
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid #334155;
+            gap: 0.5rem;
+            position: sticky;
+            top: 56px;
+            z-index: 90;
+        }
+
+        .mobile-tab-btn {
+            flex: 1;
+            padding: 0.45rem 0.75rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            border-radius: 6px;
+            border: 1px solid #475569;
+            background-color: #0F172A;
+            color: #94A3B8;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            transition: all 0.15s;
+        }
+
+        .mobile-tab-btn.active {
+            background-color: var(--tkamber);
+            color: #FFFFFF;
+            border-color: var(--tkamber);
+        }
+
+        /* Main Workspace Layout */
+        .app-workspace {
+            display: flex;
+            flex: 1;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Form Panel */
+        .form-panel {
+            background-color: #F8FAFC;
+            display: flex;
+            flex-direction: column;
+            gap: 1.15rem;
+        }
+
+        .form-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            padding: 1.15rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.85rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #F1F5F9;
+            gap: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--tknavy);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .card-title::before {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 14px;
+            background: var(--tkamber);
+            border-radius: 2px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.65rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.28rem;
+        }
+
+        .form-label {
+            font-size: 0.76rem;
+            font-weight: 600;
+            color: #475569;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.45rem 0.65rem;
+            font-size: 0.82rem;
+            border: 1px solid #CBD5E1;
+            border-radius: 5px;
+            color: #1E293B;
+            background-color: #FFFFFF;
+            min-height: var(--target-size);
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--tkamber);
+            box-shadow: 0 0 0 3px rgba(240, 154, 54, 0.15);
+        }
+
+        .form-control[readonly] {
+            background-color: #F1F5F9;
+            color: #64748B;
+            cursor: not-allowed;
+        }
+
+        /* Table in Form with Horizontal Scroll for Mobile */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-top: 0.5rem;
+            border-radius: 6px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .table-scroll-hint {
+            display: none;
+            font-size: 0.72rem;
+            color: #64748B;
+            margin-top: 0.35rem;
+            font-style: italic;
+        }
+
+        .items-table {
+            width: 100%;
+            min-width: 520px;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+
+        .items-table th {
+            background: #F1F5F9;
+            color: #475569;
+            font-weight: 600;
+            text-align: left;
+            padding: 0.45rem 0.5rem;
+            border-bottom: 2px solid #E2E8F0;
+        }
+
+        .items-table td {
+            padding: 0.35rem 0.4rem;
+            border-bottom: 1px solid #E2E8F0;
+            vertical-align: middle;
+        }
+
+        .totals-box {
+            margin-top: 0.85rem;
+            padding: 0.85rem;
+            background-color: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.82rem;
+            color: #475569;
+        }
+
+        .total-row.grand-total {
+            border-top: 2px solid #CBD5E1;
+            padding-top: 0.5rem;
+            margin-top: 0.25rem;
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: var(--tknavy);
+        }
+
+        .total-row.grand-total span:last-child {
+            color: #B45309;
+        }
+
+        /* Live Visual A4 Preview Panel */
+        .preview-panel {
+            background-color: #334155;
+            padding: 1.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .preview-header-bar {
+            width: 794px;
+            max-width: 100%;
+            background-color: #1E293B;
+            color: #94A3B8;
+            padding: 0.5rem 1rem;
+            border-radius: 6px 6px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.78rem;
+            margin-bottom: 1rem;
+            flex-shrink: 0;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .preview-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background-color: rgba(34, 197, 94, 0.2);
+            color: #4ADE80;
+            padding: 0.15rem 0.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.72rem;
+        }
+
+        .zoom-controls {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .zoom-btn {
+            background: #0F172A;
+            border: 1px solid #475569;
+            color: #94A3B8;
+            font-size: 0.72rem;
+            padding: 0.2rem 0.55rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .zoom-btn.active {
+            background: var(--tkamber);
+            color: #FFFFFF;
+            border-color: var(--tkamber);
+        }
+
+        /* Container for All A4 Sheets in Live Preview */
+        #sheetsContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .sheet-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            overflow: visible;
+        }
+
+        /* A4 Quotation Paper Simulation (Exact LaTeX Replica) */
+        .a4-sheet {
+            width: 210mm;
+            height: 297mm;
+            min-height: 297mm;
+            max-height: 297mm;
+            background: #FFFFFF;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+            position: relative;
+            box-sizing: border-box;
+            padding: 38mm 18mm 38mm 18mm;
+            font-family: Helvetica, Arial, sans-serif;
+            color: var(--tktext);
+            overflow: hidden;
+            flex-shrink: 0;
+            transition: transform 0.2s ease;
+        }
+
+        /* Corner Top-Right Angle Block */
+        .corner-decor {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 49mm;
+            height: 15mm;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        /* Header (Repeats visually on every page) */
+        .sheet-header {
+            position: absolute;
+            top: 11mm;
+            left: 18mm;
+            right: 18mm;
+            height: 20mm;
+            display: flex;
+            align-items: flex-start;
+            gap: 4mm;
+            z-index: 10;
+        }
+
+        .sheet-header-logo {
+            width: 17mm;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .sheet-header-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sheet-header-title {
+            font-size: 15pt;
+            font-weight: bold;
+            line-height: 1.15;
+        }
+
+        .sheet-header-title .navy {
+            color: var(--tknavy);
+        }
+
+        .sheet-header-title .black {
+            color: #000000;
+        }
+
+        .sheet-header-slogan {
+            color: var(--tkamber);
+            font-size: 8.5pt;
+            font-weight: bold;
+            margin-top: 2.5pt;
+            letter-spacing: 0.2pt;
+        }
+
+        .sheet-header-cbca {
+            color: var(--tktext);
+            font-size: 7.2pt;
+            margin-top: 1.5pt;
+        }
+
+        /* Amber Line Below Header */
+        .sheet-header-rule {
+            position: absolute;
+            top: 31mm;
+            left: 18mm;
+            right: 18mm;
+            height: 1.4px;
+            background-color: var(--tkamber);
+            z-index: 10;
+        }
+
+        /* Watermark: Symmetrically Centered at (105mm, 148.5mm) */
+        .sheet-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            opacity: 0.042;
+            width: 200mm;
+            pointer-events: none;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .sheet-watermark img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Sheet Content Flow */
+        .sheet-body {
+            position: relative;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .sheet-title {
+            text-align: right;
+            font-size: 23pt;
+            font-weight: bold;
+            color: var(--tknavy);
+            margin-top: 3mm;
+            margin-bottom: 3.5mm;
+            letter-spacing: 0.5pt;
+        }
+
+        /* Receiver + Quote Meta Light Box */
+        .sheet-meta-box {
+            background-color: var(--tklight);
+            border-radius: 2px;
+            padding: 3.5mm 4mm;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5mm;
+            font-size: 8.8pt;
+            line-height: 1.35;
+        }
+
+        .sheet-receiver {
+            width: 55%;
+        }
+
+        .sheet-receiver-label {
+            color: var(--tkamber);
+            font-weight: bold;
+            font-size: 8.2pt;
+            letter-spacing: 0.4pt;
+            margin-bottom: 2pt;
+        }
+
+        .sheet-receiver-company {
+            color: var(--tknavy);
+            font-weight: bold;
+            font-size: 10.2pt;
+            margin-bottom: 2pt;
+        }
+
+        .sheet-quote-info {
+            width: 44%;
+            text-align: right;
+        }
+
+        .sheet-quote-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 8.6pt;
+        }
+
+        .sheet-quote-table td {
+            padding: 1.2pt 0;
+        }
+
+        .sheet-quote-table td.label {
+            color: var(--tknavy);
+            font-weight: bold;
+            padding-right: 3mm;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .sheet-quote-table td.val {
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        /* Items Table in Sheet */
+        .sheet-items-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 8.6pt;
+            margin-bottom: 4mm;
+        }
+
+        .sheet-items-table th {
+            background-color: var(--tknavy);
+            color: #FFFFFF;
+            font-weight: bold;
+            text-align: left;
+            padding: 5pt 5pt;
+            border: 1px solid var(--tknavy);
+        }
+
+        .sheet-items-table th.center {
+            text-align: center;
+        }
+
+        .sheet-items-table th.right {
+            text-align: right;
+        }
+
+        .sheet-items-table td {
+            padding: 4.8pt 5pt;
+            border-bottom: 1px solid var(--tkgray);
+            border-left: 1px solid var(--tkgray);
+            border-right: 1px solid var(--tkgray);
+            color: var(--tktext);
+        }
+
+        .sheet-items-table td.center {
+            text-align: center;
+        }
+
+        .sheet-items-table td.right {
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .sheet-items-table tr.blank-row td {
+            height: 18pt;
+        }
+
+        /* Totals Block in Sheet */
+        .sheet-totals-wrap {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 4mm;
+        }
+
+        .sheet-totals-table {
+            width: 75mm;
+            border-collapse: collapse;
+            font-size: 9pt;
+        }
+
+        .sheet-totals-table td {
+            padding: 2.2pt 4pt;
+        }
+
+        .sheet-totals-table td.lbl {
+            text-align: right;
+            color: var(--tktext);
+            width: 55%;
+        }
+
+        .sheet-totals-table td.num {
+            text-align: right;
+            font-weight: 500;
+            width: 45%;
+        }
+
+        .sheet-totals-table tr.grand-row td {
+            background-color: var(--tknavy);
+            color: #FFFFFF;
+            font-weight: bold;
+            padding: 4.5pt 6pt;
+            border-top: 1.5px solid var(--tkamber);
+        }
+
+        .sheet-totals-table tr.grand-row td.lbl {
+            color: #FFFFFF;
+            text-align: right;
+        }
+
+        /* Notes Section in Sheet */
+        .sheet-notes {
+            margin-top: 1mm;
+            font-size: 8.4pt;
+            line-height: 1.45;
+            color: var(--tktext);
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
+
+        .sheet-notes-rule {
+            height: 1px;
+            background-color: var(--tkgray);
+            margin: 3mm 0;
+        }
+
+        .sheet-thank-you {
+            font-style: italic;
+            color: #64748B;
+            margin-top: 3.5mm;
+            font-size: 8.8pt;
+        }
+
+        /* Footer Band (Bottom of Sheet) */
+        .sheet-footer-wrap {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 27mm;
+            background-color: var(--tknavydark);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10mm;
+        }
+
+        .sheet-footer-amber-rule {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 0.8mm;
+            background-color: var(--tkamber);
+        }
+
+        .sheet-footer-content {
+            color: #FFFFFF;
+            font-size: 7.4pt;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5mm;
+            white-space: nowrap;
+        }
+
+        .sheet-footer-content span.tag {
+            color: var(--tkamber);
+            font-weight: bold;
+            margin-right: 1mm;
+        }
+
+        .sheet-page-num {
+            position: absolute;
+            bottom: 29mm;
+            right: 18mm;
+            font-size: 7.5pt;
+            color: var(--tktext);
+            z-index: 10;
+        }
+
+        /* Toast Notification */
+        #toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background-color: #0F172A;
+            color: #FFFFFF;
+            border-left: 4px solid var(--tkamber);
+            padding: 0.85rem 1.25rem;
+            border-radius: 6px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: all 0.25s ease-in-out;
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        #toast.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* ==========================================================================
+       RESPONSIVE BREAKPOINTS (Desktop >= 1200px vs Mobile / Tablet < 1200px)
+       ========================================================================== */
+
+        @media (min-width: 1200px) {
+            .app-workspace {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            .form-panel {
+                width: 48%;
+                min-width: 480px;
+                max-width: 620px;
+                padding: 1.5rem 1.25rem;
+                border-right: 1px solid #CBD5E1;
+            }
+
+            .preview-panel {
+                flex: 1;
+                position: sticky;
+                top: 60px;
+                max-height: calc(100vh - 60px);
+                overflow-y: auto;
+                overflow-x: auto;
+            }
+
+            .mobile-nav-tabs {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 1199px) {
+            .app-workspace {
+                flex-direction: column;
+                height: auto;
+                overflow: visible;
+            }
+
+            .mobile-nav-tabs {
+                display: flex;
+            }
+
+            .form-panel {
+                width: 100%;
+                max-width: 100%;
+                min-width: 0;
+                border-right: none;
+                border-bottom: 3px solid var(--tkamber);
+                padding: 1.25rem 1rem;
+            }
+
+            .preview-panel {
+                width: 100%;
+                max-width: 100%;
+                min-width: 0;
+                padding: 1.5rem 0.5rem;
+                overflow-x: auto;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .grid-3 {
+                grid-template-columns: 1fr;
+                gap: 0.65rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-nav {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 0.75rem 1rem;
+                gap: 0.75rem;
+            }
+
+            .nav-brand {
+                justify-content: flex-start;
+            }
+
+            .nav-actions {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.5rem;
+            }
+
+            .nav-actions .btn-primary {
+                grid-column: span 2;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 0.65rem;
+            }
+
+            .card-header {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .table-scroll-hint {
+                display: block;
+            }
+        }
+
+        /* Print Styles: Save as PDF directly in browser */
+        @media print {
+
+            body,
+            html {
+                background: transparent !important;
+                height: auto !important;
+                overflow: visible !important;
+            }
+
+            .top-nav,
+            .mobile-nav-tabs,
+            .form-panel,
+            .preview-header-bar,
+            #toast {
+                display: none !important;
+            }
+
+            .app-workspace {
+                display: block !important;
+                height: auto !important;
+                overflow: visible !important;
+            }
+
+            .preview-panel {
+                padding: 0 !important;
+                background: transparent !important;
+                overflow: visible !important;
+                display: block !important;
+            }
+
+            #sheetsContainer {
+                display: block !important;
+                gap: 0 !important;
+            }
+
+            .sheet-wrapper {
+                display: block !important;
+                height: auto !important;
+                transform: none !important;
+            }
+
+            .a4-sheet {
+                box-shadow: none !important;
+                margin: 0 !important;
+                width: 100% !important;
+                height: 297mm !important;
+                page-break-after: always !important;
+                page-break-inside: avoid !important;
+                transform: none !important;
+            }
+
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+        }
+/* Additional Print Rules for Multi-Document Hub */
+@media print {
+    .auth-gate-overlay {
+        display: none !important;
+    }
+    .doc-workspace:not(.active) {
+        display: none !important;
+    }
+    #invSheetsContainer, #letterSheetsContainer {
+        display: block !important;
+        gap: 0 !important;
+    }
+}

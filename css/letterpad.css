@@ -1,0 +1,57 @@
+/* Letter Pad Specific Styles */
+.letterpad-body-text {
+    font-size: 9.6pt;
+    line-height: 1.65;
+    color: var(--tktext);
+    margin-top: 5mm;
+    text-align: justify;
+}
+
+.letterpad-body-text p {
+    margin-bottom: 4mm;
+}
+
+.letterpad-meta-grid {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9pt;
+    margin-bottom: 5mm;
+    line-height: 1.45;
+}
+
+.letterpad-subject-bar {
+    background-color: var(--tklight);
+    border-left: 3.5px solid var(--tkamber);
+    padding: 3mm 4.5mm;
+    margin-bottom: 5mm;
+    font-size: 9.8pt;
+    font-weight: bold;
+    color: var(--tknavy);
+}
+
+.letterpad-signature {
+    margin-top: 8mm;
+    font-size: 9pt;
+    line-height: 1.4;
+}
+
+.letterpad-signature-name {
+    font-weight: bold;
+    color: var(--tknavy);
+    font-size: 9.8pt;
+    margin-top: 4mm;
+}
+
+.letterpad-badge {
+    display: inline-block;
+    padding: 2.5px 8px;
+    background: rgba(240, 154, 54, 0.15);
+    border: 1px solid var(--tkamber);
+    border-radius: 4px;
+    color: #B45309;
+    font-weight: 700;
+    font-size: 7.8pt;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4mm;
+}
