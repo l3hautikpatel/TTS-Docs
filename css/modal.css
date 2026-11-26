@@ -1,0 +1,205 @@
+/* Security Gate & Password Protection Overlay */
+.auth-gate-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 20%, #1A3651 0%, #0D1F30 70%, #060E17 100%);
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    backdrop-filter: blur(12px);
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.auth-gate-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 440px;
+    background: #0F172A;
+    border: 1.5px solid rgba(240, 154, 54, 0.5);
+    border-radius: 14px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(240, 154, 54, 0.15);
+    padding: 2.2rem 2rem;
+    color: #F8FAFC;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    animation: authSlideUp 0.35s ease;
+}
+
+@keyframes authSlideUp {
+    from {
+        transform: translateY(20px) scale(0.97);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.auth-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #1A3651 0%, #F09A36 50%, #1A3651 100%);
+}
+
+.auth-logo-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background: #1A3651;
+    border: 2px solid #F09A36;
+    border-radius: 12px;
+    margin-bottom: 1.1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+}
+
+.auth-logo-badge img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+}
+
+.auth-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #FFFFFF;
+    margin-bottom: 0.25rem;
+}
+
+.auth-title span {
+    color: #F09A36;
+}
+
+.auth-subtitle {
+    font-size: 0.78rem;
+    color: #94A3B8;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 1.4rem;
+}
+
+.auth-field-wrap {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.auth-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.85rem 2.8rem 0.85rem 1rem;
+    background: #1E293B;
+    border: 1.5px solid #334155;
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-size: 0.98rem;
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.auth-input:focus {
+    border-color: #F09A36;
+    box-shadow: 0 0 0 3px rgba(240, 154, 54, 0.25);
+    background: #0F172A;
+}
+
+.auth-toggle-pwd {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #94A3B8;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.auth-toggle-pwd:hover {
+    color: #F09A36;
+}
+
+.auth-submit-btn {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    background: linear-gradient(135deg, #1A3651 0%, #234E75 100%);
+    border: 1.5px solid #F09A36;
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 0.92rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.auth-submit-btn:hover {
+    background: linear-gradient(135deg, #234E75 0%, #1A3651 100%);
+    box-shadow: 0 4px 15px rgba(240, 154, 54, 0.3);
+    transform: translateY(-1px);
+}
+
+.auth-error {
+    margin-top: 0.85rem;
+    font-size: 0.8rem;
+    color: #F87171;
+    min-height: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+}
+
+.auth-card-footer {
+    margin-top: 1.3rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.72rem;
+    color: #64748B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+}
+
+.auth-shake {
+    animation: authShake 0.4s ease;
+}
+
+@keyframes authShake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-8px); }
+    40%, 80% { transform: translateX(8px); }
+}
+
+/* Security Blur Filter for Workspaces while locked */
+.portal-locked .doc-workspace,
+.portal-locked .top-nav {
+    filter: blur(28px) grayscale(60%) !important;
+    pointer-events: none !important;
+    user-select: none !important;
+}
